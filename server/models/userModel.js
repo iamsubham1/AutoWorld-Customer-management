@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
+// Define enum for roles
+const roles = ['worker', 'admin'];
 
-const adminSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -17,9 +19,12 @@ const adminSchema = new mongoose.Schema({
     password: {
         type: String,
     },
+    role: {
+        type: String,
+        enum: roles, // Using enum to restrict values to predefined set
 
+    }
 });
 
-
-const Admin = mongoose.model('Admin', adminSchema);
-module.exports = Admin;
+const User = mongoose.model('User', userSchema);
+module.exports = User;

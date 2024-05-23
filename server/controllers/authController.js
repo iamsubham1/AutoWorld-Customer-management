@@ -1,28 +1,32 @@
-const Admin = require('../models/adminModel')
+const User = require('../models/userModel');
 const bcrypt = require("bcryptjs");
-const { generateJWT } = require('../utility/helper')
-
+const { generateJWT } = require('../utility/helper');
 
 const signUpController = async (req, res) => {
     try {
-        const email = req.body.email;
-        let user = await Admin.findOne({ email: email });
+        const { name, email, password, phoneNumber, role } = req.body;
+
+        // Check if the role is specified in the request body, default to 'worker'
+        const userRole = role || 'worker';
+
+        let user = await User.findOne({ email: email });
         if (!user) {
             const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(req.body.password, salt);
+            const hashedPassword = await bcrypt.hash(password, salt);
 
-            user = await Admin.create({
-                name: req.body.name,
+            user = await User.create({
+                name: name,
                 password: hashedPassword,
-                email: req.body.email,
-                phoneNumber: req.body.phoneNumber,
+                email: email,
+                phoneNumber: phoneNumber,
+                role: userRole
             });
 
-            return res.status(200).json({ success: true, msg: "account created", user });
+            return res.status(200).json({ success: true, msg: "Account created", user });
         }
 
         console.log("Account exists. Login instead");
-        return res.status(400).json({ error: "account exists" });
+        return res.status(400).json({ error: "Account exists" });
 
     } catch (error) {
         console.error(error.message);
@@ -35,7 +39,7 @@ const loginController = async (req, res) => {
         const { email, password } = req.body;
         console.log("Received login request for email:", email);
 
-        let user = await Admin.findOne({ email: email });
+        let user = await User.findOne({ email: email });
         console.log("User found in the database:", user);
 
         if (user) {
@@ -45,15 +49,12 @@ const loginController = async (req, res) => {
             if (passwordCompare) {
                 console.log("Password is correct. Generating JWT...");
 
-
                 const token = generateJWT(user);
                 res.cookie('JWT', token, { httpOnly: false, secure: true, sameSite: 'none' });
                 return res.status(200).json({ success: true, token });
-
             } else {
                 console.log("Incorrect password");
             }
-
         } else {
             console.log("User not found");
         }
@@ -65,8 +66,5 @@ const loginController = async (req, res) => {
         return res.status(500).json({ success: false, error: "Internal server error" });
     }
 };
-
-
-
 
 module.exports = { signUpController, loginController };
