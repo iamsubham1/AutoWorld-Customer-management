@@ -1,14 +1,16 @@
 
 import Login from './components/Login';
 import Navbar from './components/Navbar'
-import Home from './pages/Home'
+import CarEntry from './pages/CarEntry';
 import {
   BrowserRouter,
-  Link,
   Route,
   Routes,
 } from "react-router-dom";
-
+import Home from './pages/Home';
+import AdminDashboard from './pages/AdminDashboard';
+import Footer from './components/Footer';
+import UnauthorizedPage from './pages/UnauthorziedPage';
 
 
 function App() {
@@ -19,10 +21,14 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/adminLogin" element={<Login />} />
 
+          <Route path="/carEntry" element={<CarEntry />} />
+          <Route path="/adminLogin" element={<Login />} />
+          <Route path="/dashboard" element={<AdminDashboard />} />
+          <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
         </Routes>
+        <Footer />
       </BrowserRouter>
 
     </>

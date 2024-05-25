@@ -2,6 +2,8 @@ const User = require('../models/userModel');
 const bcrypt = require("bcryptjs");
 const { generateJWT } = require('../utility/helper');
 
+
+//only accessed by admins
 const signUpController = async (req, res) => {
     try {
         const { name, email, password, phoneNumber, role } = req.body;
@@ -34,6 +36,7 @@ const signUpController = async (req, res) => {
     }
 };
 
+
 const loginController = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -48,10 +51,23 @@ const loginController = async (req, res) => {
 
             if (passwordCompare) {
                 console.log("Password is correct. Generating JWT...");
-
                 const token = generateJWT(user);
-                res.cookie('JWT', token, { httpOnly: false, secure: true, sameSite: 'none' });
-                return res.status(200).json({ success: true, token });
+
+                // Set the JWT cookie
+                res.cookie('JWT', token, {
+                    httpOnly: false,
+                    secure: true,
+                    sameSite: 'none',
+                });
+
+                // Set the role cookie
+                res.cookie('role', user.role, {
+                    httpOnly: false,
+                    secure: true,
+                    sameSite: 'none',
+                });
+
+                return res.status(200).json({ success: true, role: user.role });
             } else {
                 console.log("Incorrect password");
             }
@@ -60,11 +76,9 @@ const loginController = async (req, res) => {
         }
 
         return res.status(400).json({ success: false, error: "Enter correct credentials" });
-
     } catch (error) {
         console.error("Error during login:", error);
         return res.status(500).json({ success: false, error: "Internal server error" });
     }
 };
-
 module.exports = { signUpController, loginController };

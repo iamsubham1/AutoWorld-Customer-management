@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
 
-
 const carEntrySchema = new mongoose.Schema({
     customerName: {
         type: String,
         required: true,
     },
-
     phoneNumber: {
         type: Number,
         required: true,
@@ -27,12 +25,11 @@ const carEntrySchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    kms: {
-        type: Number
+    serviceCharge: {
+        type: Number,
+        required: true,
     }
-
-});
-
+}, { timestamps: true });
 
 const CarEntry = mongoose.model('CarEntry', carEntrySchema);
 module.exports = CarEntry;

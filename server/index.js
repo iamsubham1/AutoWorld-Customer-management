@@ -18,8 +18,11 @@ const startServer = async () => {
     try {
         app.use(express.json());
 
-        //authentication route
+        //app routes
         app.use('/api/auth', require('./routes/auth.js'));
+        app.use('/api/service', require('./routes/service.js'));
+        app.use('/api/admin', require('./routes/dashboardRoutes.js'));
+
 
 
 
