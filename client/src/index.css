@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
   background: #000;
   box-sizing: border-box;
@@ -12,6 +13,13 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+.toast-banner-color {
+  background: #fdcb02;
+}
+
+.yellow-text {
+  color: #fdcb02;
+}
 
 select {
   background-color: white;

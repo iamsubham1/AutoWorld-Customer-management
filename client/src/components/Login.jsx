@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { login } from '../api/api';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({ heading, handleBack }) => {
     const [email, setEmail] = useState('');
@@ -20,22 +22,32 @@ const Login = ({ heading, handleBack }) => {
         try {
             const response = await login({ email, password });
             if (response.success) {
+                notify("login successfull");
                 if (response.role === 'admin') {
-                    navigate('/dashboard');
+                    setTimeout(() => {
+                        navigate('/dashboard');
+
+                    }, 1000);
                 } else {
-                    navigate('/carEntry');
+                    setTimeout(() => {
+                        navigate('/carEntry');
+
+                    }, 1000);
                 }
             } else {
-                alert(response.error);
+                notify(response.error);
             }
         } catch (error) {
             console.error('Login error:', error);
             alert('An error occurred. Please try again.');
         }
     };
+    const notify = (message) => toast(message, { theme: "dark", progressClassName: "toast-banner-color", bodyClassName: "yellow-text" },);
 
     return (
         <div className='w-screen h-[80vh] grid place-content-center'>
+            <ToastContainer className="mt-[5%] text-red-600" />
+
             <div className="mx-auto p-6 bg-[#fcfcfc] rounded-lg shadow-lg w-[30vw]">
                 <h2 className="text-2xl font-semibold mb-6 text-center capitalize">{heading} login</h2>
                 <form onSubmit={handleSubmit}>
