@@ -24,9 +24,6 @@ const startServer = async () => {
         app.use('/api/admin', require('./routes/dashboardRoutes.js'));
 
 
-
-
-
         //health route
         app.get("/health", (req, res) => {
             res.json("health is running ok");

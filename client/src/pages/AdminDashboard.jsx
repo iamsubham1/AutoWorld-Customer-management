@@ -4,6 +4,7 @@ import { getCookie, isAdmin } from '../utility/getCookie';
 import AllEntries from '../components/AllEntires';
 import Settings from '../components/Settings';
 import Reports from '../components/Reports';
+import { getAllEntries } from '../api/api';
 
 const sampleData = [
     {
@@ -174,6 +175,16 @@ const AdminDashboard = () => {
             navigate('/unauthorized');
         }
     }, [])
+
+    useEffect(() => {
+
+        const allEntires = async () => {
+            const entries = await getAllEntries();
+            setEntries(entries.entries);
+        }
+
+        allEntires();
+    }, []);
     return (
         <div className="flex h-[80vh] bg-black text-white">
             {/* Sidebar */}

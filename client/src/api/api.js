@@ -1,3 +1,5 @@
+import { getCookie } from "../utility/getCookie";
+
 const baseUrl = "http://localhost:8080/api/"
 
 
@@ -24,4 +26,24 @@ export const login = async (credentials) => {
         return false;
     }
 
+}
+
+
+
+export const getAllEntries = async () => {
+    try {
+
+        const response = await fetch(`${baseUrl}service/getcarentries`, {
+            headers: {
+                'Content-Type': 'application/json',
+                JWT: getCookie('JWT')
+            }
+        })
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error('Network error:', error);
+        return false;
+    }
 }
