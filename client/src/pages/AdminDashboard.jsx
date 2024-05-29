@@ -5,6 +5,7 @@ import AllEntries from '../components/AllEntires';
 import Settings from '../components/Settings';
 import Reports from '../components/Reports';
 import { getAllEntries } from '../api/api';
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 const sampleData = [
     {
@@ -167,6 +168,7 @@ const AdminDashboard = () => {
                 return <AllEntries entries={entries} />;
         }
     };
+
     useEffect(() => {
         const cookie = getCookie('JWT');
         if (!cookie) {
@@ -219,7 +221,8 @@ const AdminDashboard = () => {
             <div className="flex-1 p-6">
                 {/* Header */}
                 <header className="mb-4">
-                    <h1 className="text-3xl font-semibold"> Admin Dashboard</h1>
+                    <h1 className="text-3xl font-semibold capitalize flex items-center">Admin Dashboard<MdOutlineKeyboardArrowRight className='text-5xl' />
+                        {currentView}</h1>
                 </header>
 
                 {/* Main Dashboard Content */}

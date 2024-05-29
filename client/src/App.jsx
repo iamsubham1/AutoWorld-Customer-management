@@ -21,7 +21,6 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-
           <Route path="/carEntry" element={<CarEntry />} />
           <Route path="/adminLogin" element={<Login />} />
           <Route path="/dashboard" element={<AdminDashboard />} />

@@ -47,3 +47,21 @@ export const getAllEntries = async () => {
         return false;
     }
 }
+
+export const getAllUsers = async () => {
+    try {
+
+        const response = await fetch(`${baseUrl}admin/allUsers`, {
+            headers: {
+                'Content-Type': 'application/json',
+                JWT: getCookie('JWT')
+            }
+        })
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error('Network error:', error);
+        return false;
+    }
+}

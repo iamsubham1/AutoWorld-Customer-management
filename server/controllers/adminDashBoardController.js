@@ -1,4 +1,5 @@
 const CarEntry = require('../models/carEntry');
+const User = require('../models/userModel');
 
 const getEntriesByServiceType = async (req, res) => {
     try {
@@ -72,4 +73,15 @@ const getEntriesByDate = async (req, res) => {
     }
 };
 
-module.exports = { getEntriesByServiceType, getEntriesByCustomerName, getEntriesByDate };
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+        console.log(users);
+        return res.status(200).json({ success: true, users });
+    } catch (error) {
+        console.error("Error fetching users ", error);
+        return res.status(500).json({ success: false, error: "Internal Server Error" });
+    }
+}
+
+module.exports = { getEntriesByServiceType, getEntriesByCustomerName, getEntriesByDate, getAllUsers };

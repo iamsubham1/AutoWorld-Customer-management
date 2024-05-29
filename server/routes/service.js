@@ -12,7 +12,7 @@ require('dotenv').config();
 router.post('/addcarentry', verifyUser, addEntry);
 
 // Route for getting all car entries
-router.get('/getcarentries', verifyUser, getAllEntries);
+router.get('/getcarentries', verifyUser, isAdmin, getAllEntries);
 
 // Route for updating a car entry's service charge
 router.put('/updatecarentry/:id', verifyUser, updateEntry);
