@@ -28,8 +28,6 @@ export const login = async (credentials) => {
 
 }
 
-
-
 export const getAllEntries = async () => {
     try {
 

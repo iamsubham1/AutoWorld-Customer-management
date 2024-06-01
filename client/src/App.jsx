@@ -25,6 +25,7 @@ function App() {
           <Route path="/adminLogin" element={<Login />} />
           <Route path="/dashboard" element={<AdminDashboard />} />
           <Route path="/unauthorized" element={<UnauthorizedPage />} />
+          <Route path="/*" element={<h1 className='text-8xl text-white'>404</h1>} />
 
         </Routes>
         <Footer />

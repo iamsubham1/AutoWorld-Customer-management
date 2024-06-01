@@ -163,7 +163,7 @@ const AdminDashboard = () => {
             case 'settings':
                 return <Settings />;
             case 'reports':
-                return <Reports />;
+                return <Reports data={entries} />;
             default:
                 return <AllEntries entries={entries} />;
         }
@@ -188,7 +188,7 @@ const AdminDashboard = () => {
         allEntires();
     }, []);
     return (
-        <div className="flex h-[80vh] bg-black text-white">
+        <div className="flex h-[80vh] bg-[#090909] text-white">
             {/* Sidebar */}
             <div className="w-64 bg-yellow-400 text-black">
                 <div className="p-4">
@@ -221,7 +221,7 @@ const AdminDashboard = () => {
             <div className="flex-1 p-6">
                 {/* Header */}
                 <header className="mb-4">
-                    <h1 className="text-3xl font-semibold capitalize flex items-center">Admin Dashboard<MdOutlineKeyboardArrowRight className='text-5xl' />
+                    <h1 className="text-3xl font-semibold capitalize flex items-center">Dashboard<MdOutlineKeyboardArrowRight className='text-5xl' />
                         {currentView}</h1>
                 </header>
 

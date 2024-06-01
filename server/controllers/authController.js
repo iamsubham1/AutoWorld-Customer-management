@@ -58,6 +58,8 @@ const loginController = async (req, res) => {
                     httpOnly: false,
                     secure: true,
                     sameSite: 'none',
+                    maxAge: 24 * 60 * 60 * 1000 // 24 hours in milliseconds
+
                 });
 
                 // Set the role cookie
@@ -65,7 +67,9 @@ const loginController = async (req, res) => {
                     httpOnly: false,
                     secure: true,
                     sameSite: 'none',
+                    maxAge: 24 * 60 * 60 * 1000 // 24 hours in milliseconds
                 });
+
 
                 return res.status(200).json({ success: true, role: user.role });
             } else {

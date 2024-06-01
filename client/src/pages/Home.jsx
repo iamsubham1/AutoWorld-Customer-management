@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Login from '../components/Login';
 import { GrUserWorker } from "react-icons/gr";
 import { RiAdminFill } from "react-icons/ri";
+import { getCookie } from '../utility/getCookie';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+    const navigate = useNavigate();
     const [loginType, setLoginType] = useState(null);
     const handleSelectLogin = (type) => {
         setLoginType(type);
@@ -11,6 +14,17 @@ const Home = () => {
     const handleBack = () => {
         setLoginType(null);
     };
+    useEffect(() => {
+        const cookie = getCookie('role');
+        if (!cookie) {
+            navigate('/');
+        } else if (cookie == "admin") {
+            navigate('/dashboard');
+        } else {
+            navigate('/carentry');
+
+        }
+    }, [])
 
 
     return (

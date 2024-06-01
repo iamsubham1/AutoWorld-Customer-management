@@ -18,7 +18,7 @@ const Navbar = () => {
     const isAuthenticated = getCookie('JWT');
 
     return (
-        <nav className="bg-[#151515] p-3 mt-5">
+        <nav className="bg-[#111111] p-3 mt-5">
             <div className="mx-auto flex justify-between items-center">
                 <h1 className='font-semibold text-yellow-500 cursor-pointer' onClick={() => navigate('/')}>
                     AUTO WORLD

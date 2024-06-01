@@ -58,8 +58,7 @@ const AllEntries = ({ entries }) => {
     ];
 
     return (
-        <div>
-            <h2 className="text-xl font-semibold">All Entries</h2>
+        <div className='mt-10'>
 
             <div className="flex space-x-4 mb-4 text-black">
                 <input
