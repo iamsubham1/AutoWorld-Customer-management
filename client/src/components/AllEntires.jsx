@@ -81,11 +81,27 @@ const AllEntries = ({ entries }) => {
                 />
             </div>
 
-            <ul>
+            <ul className="mt-10 gap-4">
+                <div className=" grid grid-cols-6 p-4 border-b text-center text-[#999999] capitalize">
+                    <p>customerName</p>
+                    <p>carBrand</p>
+                    <p>carModel</p>
+                    <p>service</p>
+                    <p>serviceCharge</p>
+                    <p>date</p>
+                </div>
                 {currentEntries.map((entry, index) => (
-                    <li key={index} className="p-2 border-b">
-                        {entry.customerName} - {entry.carBrand} - {entry.carModel} - {entry.service} - {entry.serviceCharge} - {formatDate(entry.createdAt)}
-                    </li>
+                    <>
+
+                        <div key={index} className=" grid grid-cols-6 p-4 border-b text-center">
+                            <p>{entry.customerName}</p>
+                            <p>{entry.carBrand}</p>
+                            <p>{entry.carModel}</p>
+                            <p>{entry.service}</p>
+                            <p>{entry.serviceCharge}</p>
+                            <p>{formatDate(entry.createdAt)}</p>
+                        </div>
+                    </>
                 ))}
             </ul>
 

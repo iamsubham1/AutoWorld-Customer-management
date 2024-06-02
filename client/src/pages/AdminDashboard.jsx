@@ -196,19 +196,19 @@ const AdminDashboard = () => {
                 <nav className="mt-4 font-semibold">
                     <ul>
                         <li
-                            className={`px-4 py-2 hover:bg-[#7a7a7a] hover:text-black cursor-pointer ${currentView === 'all-entries' ? 'bg-black text-white' : ''}`}
+                            className={`px-4 py-2  cursor-pointer ${currentView === 'all-entries' ? 'bg-black text-white' : 'hover:bg-[#7a7a7a] text-black'}`}
                             onClick={() => setCurrentView('all-entries')}
                         >
                             All Entries
                         </li>
                         <li
-                            className={`px-4 py-2 hover:bg-[#7a7a7a] hover:text-black cursor-pointer ${currentView === 'settings' ? 'bg-black text-white' : ''}`}
+                            className={`px-4 py-2  cursor-pointer ${currentView === 'settings' ? 'bg-black text-white' : 'hover:bg-[#7a7a7a] text-black'}`}
                             onClick={() => setCurrentView('settings')}
                         >
                             Settings
                         </li>
                         <li
-                            className={`px-4 py-2 hover:bg-[#7a7a7a] hover:text-black cursor-pointer ${currentView === 'reports' ? 'bg-black text-white' : ''}`}
+                            className={`px-4 py-2  cursor-pointer ${currentView === 'reports' ? 'bg-black text-white' : 'hover:bg-[#7a7a7a] text-black'}`}
                             onClick={() => setCurrentView('reports')}
                         >
                             Reports

@@ -1,5 +1,6 @@
 import React from 'react';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryPie } from 'victory';
+import BusinessDetails from './BusinessDetails';
 
 const Reports = ({ data }) => {
     // Calculate report metrics
@@ -28,57 +29,59 @@ const Reports = ({ data }) => {
         return acc;
     }, []);
 
+
     return (
-        <div className="container mx-auto p-4">
-            <h2 className="text-xl font-semibold mb-4">Reports</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Service Summary */}
-                <div>
-                    <h3 className="text-lg font-semibold">Service Summary</h3>
-                    <p>Total Services: {totalServices}</p>
-                    <p>Total Revenue: ${totalRevenue}</p>
-                    <p>Average Service Charge: ${averageServiceCharge.toFixed(2)}</p>
-                </div>
-                {/* Customer Analysis */}
-                <div>
-                    <h3 className="text-lg font-semibold">Customer Analysis</h3>
-                    <p>Top Customers:</p>
-                    <ul>
-                        {topCustomers.map(([customer, spending]) => (
-                            <li key={customer}>{customer}: ${spending}</li>
-                        ))}
-                    </ul>
-                </div>
-                {/* Car Brand Analysis */}
-                <div>
-                    <h3 className="text-lg font-semibold">Car Brand Analysis</h3>
-                    <p>Car Brand Distribution:</p>
-                    <VictoryChart
-                        domainPadding={{ x: 20 }}
-                        theme={VictoryTheme.material}
-                        height={300}
-                    >
-                        <VictoryAxis tickFormat={Object.keys(carBrands)} />
-                        <VictoryAxis dependentAxis />
-                        <VictoryBar
-                            data={Object.entries(carBrands)}
+        <div className="container mx-auto p-4 overflow-y-scroll max-h-[65vh]">
+            <h2 className="text-2xl font-semibold mb-4 text-center text-yellow-500">BUSINESS REPORT</h2>
+            <div className="grid grid-cols-2 md:grid-cols-1 gap-4">
+                <BusinessDetails totalServices={totalServices}
+                    totalRevenue={totalRevenue}
+                    averageServiceCharge={averageServiceCharge}
+                    topCustomers={topCustomers} />
+                <div className=' grid  grid-cols-2'>
+
+
+                    {/* Car Brand Analysis */}
+                    <div>
+                        <VictoryChart
+                            domainPadding={{ x: 20 }}
+                            theme={VictoryTheme.grayscale}
+                            height={300}
+                        >
+                            <VictoryAxis
+                                tickFormat={Object.keys(carBrands)}
+                                style={{
+                                    tickLabels: { fill: "#FACC15" } // Set text color to yellow
+                                }}
+                            />                        <VictoryAxis dependentAxis />
+                            <VictoryBar
+                                data={Object.entries(carBrands)}
+                                x={0}
+                                y={1}
+                                // Specify custom color scale
+                                style={{
+                                    data: { fill: "#232323" },
+                                }}
+                            />
+                        </VictoryChart>
+                    </div>
+                    {/* Service Type Analysis */}
+                    <div>
+
+                        <VictoryPie
+                            data={Object.entries(serviceTypes)}
                             x={0}
                             y={1}
+                            labels={({ datum }) => `${datum[0]}: ${datum[1]}`}
+                            height={300}
+                            colorScale={["#FACC15", "#232323"]}
+                            style={{
+                                labels: { fill: "#FACC15" } // Set label text color to yellow
+                            }}
                         />
-                    </VictoryChart>
-                </div>
-                {/* Service Type Analysis */}
-                <div>
-                    <h3 className="text-lg font-semibold">Service Type Analysis</h3>
-                    <p>Service Type Distribution:</p>
-                    <VictoryPie
-                        data={Object.entries(serviceTypes)}
-                        x={0}
-                        y={1}
-                        labels={({ datum }) => `${datum[0]}: ${datum[1]}`}
-                        height={300}
-                        colorScale="qualitative"
-                    />
+
+
+                    </div>
                 </div>
             </div>
         </div>

@@ -34,3 +34,8 @@ select option:hover {
   background-color: yellow;
   color: rgb(140, 2, 2) !important;
 }
+
+.container::-webkit-scrollbar {
+  width: 0;
+  /* Hide scrollbar */
+}

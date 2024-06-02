@@ -58,7 +58,7 @@ const AccountManagement = () => {
     };
 
     return (
-        <div className='mt-10'>
+        <div className=''>
             <div>
                 <div className='flex items-center justify-between'>
                     <h1 className='text-center text-3xl text-yellow-400 font-medium'></h1>

@@ -28,15 +28,16 @@ const CarEntry = () => {
         e.preventDefault();
         console.log(formData);
     };
+
     useEffect(() => {
         const cookie = getCookie('JWT');
-        console.log("cookie", cookie);
         if (!cookie) {
             navigate('/');
         }
     }, []);
+
     return (
-        <div className="w-screen h-[80vh] grid place-content-center mt-2">
+        <div className="w-screen h-full sm:h-[80vh] grid place-content-center mt-2">
             <h1 className="text-white text-3xl text-center mb-4 uppercase">Car Entry</h1>
             <form className="bg-gray-100 p-6 rounded-lg shadow-lg w-full max-w-lg text-black " onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -54,7 +55,7 @@ const CarEntry = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block  mb-2 font-semibold" htmlFor="phoneNumber">Phone Number</label>
+                        <label className="block mb-2 font-semibold" htmlFor="phoneNumber">Phone Number</label>
                         <input
                             className="w-full p-2 border border-gray-300 rounded"
                             type="text"
@@ -67,7 +68,7 @@ const CarEntry = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block  mb-2 font-semibold" htmlFor="carBrand">Car Brand</label>
+                        <label className="block mb-2 font-semibold" htmlFor="carBrand">Car Brand</label>
                         <select
                             className="w-full p-2 border border-gray-300 rounded text-black"
                             id="carBrand"
@@ -75,7 +76,6 @@ const CarEntry = () => {
                             value={formData.carBrand}
                             onChange={handleChange}
                             required
-
                         >
                             <option value="">Select Car Brand</option>
                             <option value="Maruti Suzuki">Maruti Suzuki</option>
@@ -92,11 +92,11 @@ const CarEntry = () => {
                             <option value="Skoda">Skoda</option>
                             <option value="MG">MG</option>
                             <option value="Jeep">Jeep</option>
-
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <div className="mb-4">
-                        <label className="block  mb-2 font-semibold" htmlFor="carModel">Car Model</label>
+                        <label className="block mb-2 font-semibold" htmlFor="carModel">Car Model</label>
                         <input
                             className="w-full p-2 border border-gray-300 rounded"
                             type="text"
@@ -109,7 +109,7 @@ const CarEntry = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block  mb-2 font-semibold" htmlFor="registrationNumber">Registration Number</label>
+                        <label className="block mb-2 font-semibold" htmlFor="registrationNumber">Registration Number</label>
                         <input
                             className="w-full p-2 border border-gray-300 rounded"
                             type="text"
@@ -123,7 +123,7 @@ const CarEntry = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block  mb-2 font-semibold" htmlFor="service">Service</label>
+                        <label className="block mb-2 font-semibold" htmlFor="service">Service</label>
                         <select
                             className="w-full p-2 border border-gray-300 rounded text-black"
                             id="service"
@@ -137,8 +137,8 @@ const CarEntry = () => {
                             <option value="others">Others</option>
                         </select>
                     </div>
-                    <div className="mb-4 ">
-                        <label className="block  mb-2 font-semibold" htmlFor="serviceCharge">Expected Service Charge</label>
+                    <div className="mb-4">
+                        <label className="block mb-2 font-semibold" htmlFor="serviceCharge">Expected Service Charge</label>
                         <input
                             className="w-full p-2 border border-gray-300 rounded"
                             type="number"
@@ -149,8 +149,8 @@ const CarEntry = () => {
                             required
                         />
                     </div>
-                    <div className="mb-4 ">
-                        <label className="block  mb-2 font-semibold" htmlFor="serviceCharge">Service description</label>
+                    <div className="mb-4">
+                        <label className="block mb-2 font-semibold" htmlFor="serviceDescription">Service Description</label>
                         <input
                             className="w-full p-2 border border-gray-300 rounded"
                             type="text"
@@ -159,11 +159,10 @@ const CarEntry = () => {
                             value={formData.serviceDescription}
                             onChange={handleChange}
                             required
+                            placeholder='Enter Service Description'
                         />
                     </div>
-
                 </div>
-
                 <button
                     className="w-full bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded"
                     type="submit"

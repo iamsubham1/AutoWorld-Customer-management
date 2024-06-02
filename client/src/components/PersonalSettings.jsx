@@ -39,7 +39,7 @@ const PersonalSettings = () => {
     };
 
     return (
-        <div className='mt-10 w-[50%] '>
+        <div className=' w-[50%] '>
             <h1 className='text-center text-3xl text-yellow-400 font-medium'>Account Info</h1>
             <div className='mt-6 font-medium'>
                 <div className='mb-4'>
